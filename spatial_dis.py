@@ -33,7 +33,7 @@ def com_true_test_batch(i,test_sample,test_set):  # 200*30w  50 file
     filename = './features/{}/test_ground_truth/{}/spatial_truth/{}_{}_{}.npy'.format(config.data_type,config.distance_type, config.data_type, config.distance_type, str(i))
     os.makedirs(os.path.dirname(filename),exist_ok=True)
     pickle.dump(batch_matrix,open(filename,'wb'))
-    #np.save('./features/{}/test_ground_truth/{}/spatial_truth/{}_{}_{}.npy'.format(config.data_type,config.distance_type, config.data_type, config.distance_type, str(i)), batch_matrix)
+    np.save('./features/{}/test_ground_truth/{}/spatial_truth/{}_{}_{}.npy'.format(config.data_type,config.distance_type, config.data_type, config.distance_type, str(i)), batch_matrix)
 
     print('complete: '+str(i))
 
