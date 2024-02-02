@@ -155,11 +155,11 @@ class Preprocesser(object):
 
 
 def trajectory_feature_generation(path ='./data/toy_trajs',
-                                  lat_range = ais_lat_range,
-                                  lon_range = ais_lon_range,
+                                  lat_range = toy_lat_range,
+                                  lon_range = toy_lon_range,
                                   min_length=50):
     fname = config.data_type
-    trajs = pickle.load(open('./data/toy_trajs', 'rb'),encoding="latin1")
+    trajs = pickle.load(open(path, 'rb'),encoding="latin1")
     print("trajs length:",len(trajs))
 
     traj_index = {}
