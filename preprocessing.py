@@ -24,7 +24,7 @@ def distance_comp(coor_path):
 if __name__ == '__main__':
     start = time.time()
 
-    coor_path, data_name = preprocess.trajectory_feature_generation(path= './data/shuffle_coor_list.npy') 
+    coor_path, data_name = preprocess.trajectory_feature_generation(path= './data/toy_trajs') 
     distance_comp(config.corrdatapath)
     end = time.time()
     print("preprocessing time:",end-start)
