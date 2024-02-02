@@ -180,8 +180,9 @@ def trajectory_feature_generation(path ='./data/toy_trajs',
                 max_len = len(traj)
             traj_index[i] = new_traj 
 
-        if i % 10000 == 0:
-            print("i:",i)
+        if i % 200 == 0:
+            print('coor_traj:{}'.format(coor_traj))
+            print('i:{}, len(traj_index.keys()):{}'.format(i, len(traj_index.keys())))
         if len(list(traj_index.keys()))==config.all_traj_number:
             break
 
