@@ -17,9 +17,9 @@ def distance_comp(coor_path):
 
     distance_type = config.distance_type
 
-    trajecotry_distance_list(np_traj_coord[:3000], batch_size=500, processors=20, distance_type=distance_type, data_name=config.data_type)
+    trajecotry_distance_list(np_traj_coord, batch_size=200, processors=15, distance_type=distance_type, data_name=config.data_type)
 
-    trajectory_distance_combain(3000, batch_size=500, metric_type=distance_type, data_name=config.data_type) 
+    trajectory_distance_combain(1800, batch_size=200, metric_type=distance_type, data_name=config.data_type) 
 
 if __name__ == '__main__':
     start = time.time()
