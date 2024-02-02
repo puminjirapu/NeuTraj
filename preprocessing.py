@@ -7,7 +7,7 @@ from tools import config
 import time
 
 def distance_comp(coor_path):
-    traj_coord = pickle.load(open(coor_path, 'rb'),encoding="bytes")[0]
+    traj_coord = pickle.load(open(coor_path, 'rb'),encoding="latin1")[0]
     np_traj_coord = []
     for t in traj_coord:
         np_traj_coord.append(np.array(t))
