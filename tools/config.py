@@ -1,6 +1,6 @@
 # Data path
-data_type = 'AIS'
-distance_type = 'dtw'
+data_type = 'TOY'
+distance_type = 'hausdorff'
 
 corrdatapath = './features/{}/{}_traj_coord'.format(data_type,data_type)
 gridxypath = './features/{}/{}_traj_grid'.format(data_type,data_type)
