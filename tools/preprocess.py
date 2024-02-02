@@ -15,8 +15,8 @@ import os
 # hangzhou_lat_range = [30.0,30.5]
 # hangzhou_lon_range = [119.8,120.6]
 
-ais_lon_range = [-91.191,-88.607]
-ais_lat_range = [27.510,29.575]
+# ais_lon_range = [-91.191,-88.607]
+# ais_lat_range = [27.510,29.575]
 
 toy_lon_range = [116.26499, 116.496769]
 toy_lat_range = [39.826261, 39.99236]
