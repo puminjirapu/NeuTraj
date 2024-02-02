@@ -156,7 +156,7 @@ def trajectory_feature_generation(path ='./data/toy_trajs',
                                   lon_range = ais_lon_range,
                                   min_length=50):
     fname = config.data_type
-    trajs = np.load('./data/toy_trajs', allow_pickle=True)
+    trajs = pickle.load(open('./data/toy_trajs', 'rb'),encoding="latin1")
     print("trajs length:",len(trajs))
 
     traj_index = {}
