@@ -9,7 +9,7 @@ import os
 import time
 
 def com_true_test(path = None):
-    test_set = np.load(path, allow_pickle=True)
+    test_set = pickle.load(open(coor_path, 'rb'),encoding="latin1")[0]
     print("test_set",len(test_set))
     # test_set, _, _ = pickle.load(open(path, 'rb'))
     test_set = test_set[3000:10000]
@@ -62,7 +62,7 @@ def merge_ST(s_path=None):# dlhu, t_path=None):
  
 if __name__ == '__main__':
     start = time.time()
-    com_true_test('./data/{}/shuffle_coor_list.npy'.format(config.data_type))
+    com_true_test(path= './data/toy_trajs')
     combine_true_test_batch()
     merge_ST(s_path='./features/{}/test_ground_truth/{}/spatial_truth/{}_{}.npy'.format(config.data_type,config.distance_type, config.data_type, config.distance_type))
     end = time.time()
