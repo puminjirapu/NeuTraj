@@ -1,5 +1,5 @@
 # Data path
-data_type = 'TOY'
+data_type = 'toy'
 distance_type = 'hausdorff'
 
 corrdatapath = './features/{}/{}_traj_coord'.format(data_type,data_type)
