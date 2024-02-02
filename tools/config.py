@@ -10,7 +10,7 @@ distancepath = './features/{}/ground_truth/{}_{}'.format(data_type,data_type,dis
 # Training Prarmeters
 GPU = "0"
 
-all_traj_number=10000
+all_traj_number=6000
 learning_rate = 0.01
 seeds_radio=0.3
 epochs = 100
@@ -28,9 +28,9 @@ else:
 
 
 # Test Config
-datalength = 3000 #seed trajectory
-em_batch = 100
-test_num = 1000
+datalength = 1800 #seed trajectory
+em_batch = 900
+test_num = 100
 
 # Model Parameters
 d = 128
