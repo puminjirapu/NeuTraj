@@ -27,4 +27,4 @@ if __name__ == '__main__':
     coor_path, data_name = preprocess.trajectory_feature_generation(path= './data/toy_trajs') 
     distance_comp(config.corrdatapath)
     end = time.time()
-    print("preprocessing time:",end-start)
+    print("Preprocessing time: {:.2f} seconds".format(end - start))
