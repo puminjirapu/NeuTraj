@@ -9,7 +9,7 @@ import os
 import time
 
 def com_true_test(path = None):
-    test_set = pickle.load(open(path, 'rb'),encoding="latin1")[0]
+    test_set = pickle.load(open(path, 'rb'),encoding="latin1")
     print("test_set",len(test_set))
     # test_set, _, _ = pickle.load(open(path, 'rb'))
     test_set = test_set[3000:10000]
