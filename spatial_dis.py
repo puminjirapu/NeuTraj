@@ -12,7 +12,7 @@ def com_true_test(path = None):
     test_set = pickle.load(open(path, 'rb'),encoding="latin1")
     print("test_set",len(test_set))
     # test_set, _, _ = pickle.load(open(path, 'rb'))
-    test_set = test_set[3000:10000]
+    test_set = test_set[1800:6000]
     test_sample = test_set[:1000]
 
     process_size = 200 
