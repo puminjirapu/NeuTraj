@@ -38,7 +38,7 @@ class Attention(nn.Module):
         attn = F.softmax(attn.view(-1, input_size), dim=1).view(batch_size, -1, input_size)
         # (batch, out_len, in_len) * (batch, in_len, dim) -> (batch, out_len, dim)
         oatt = (attn.data != attn.data).byte()
-        attn.data.masked_fill_(oatt,0.) #masked_fill_->masked_filled
+        attn.data.masked_fill_(oatt.bool(),0.) #masked_fill_->masked_filled
         mix = torch.bmm(attn, context)
 
 
@@ -60,7 +60,7 @@ class Attention(nn.Module):
         attn = torch.bmm(output, context.transpose(1, 2))
         self.mask = (attn.data == 0).byte()  # mask中根据atten.data的数值为1的变为0，数值为0的变为1
         if self.mask is not None:
-            attn.data.masked_fill_(self.mask, -float('inf'))  #masked_fill_->masked_filled
+            attn.data.masked_fill_(self.mask.bool(), -float('inf'))  #masked_fill_->masked_filled
         attn = F.softmax(attn.view(-1, input_size), -1).view(batch_size, -1, input_size)
         # (batch, out_len, in_len) * (batch, in_len, dim) -> (batch, out_len, dim)
         mix = torch.bmm(attn, context)
@@ -73,7 +73,7 @@ class Attention(nn.Module):
         out = F.tanh(F.linear(combined.view(-1, 2 * hidden_size), self.linear_weight, self.linear_bias)).view(batch_size, -1, hidden_size)
         out = torch.squeeze(out, 1)    # ??
         oatt = (out.data != out.data).byte()  # ??
-        out.data.masked_fill_(oatt,0.)  #
+        out.data.masked_fill_(oatt.bool(),0.)  #
         return out.cuda(), attn
 
 
