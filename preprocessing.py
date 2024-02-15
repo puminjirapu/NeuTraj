@@ -16,8 +16,8 @@ def distance_comp(coor_path):
     print("len(np_traj_coord):",len(np_traj_coord))
 
     distance_type = config.distance_type
-
-    trajecotry_distance_list(np_traj_coord, batch_size=200, processors=15, distance_type=distance_type, data_name=config.data_type)
+    #trainning set 30% from 6000 trajectories
+    trajecotry_distance_list(np_traj_coord[:1800], batch_size=200, processors=15, distance_type=distance_type, data_name=config.data_type)
 
     trajectory_distance_combain(1800, batch_size=200, metric_type=distance_type, data_name=config.data_type) 
 
