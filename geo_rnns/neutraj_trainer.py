@@ -35,11 +35,11 @@ class NeuTrajTrainer(object):
                      train_radio = config.seeds_radio):
         dataset_length = config.datalength   # 1800
         traj_grids, useful_grids, max_len = pickle.load(open(griddatapath, 'rb'))
-        self.trajs_length = [len(j) for j in traj_grids][:10000] #10000 # 取前1800条轨迹的轨迹长度
+        self.trajs_length = [len(j) for j in traj_grids][:6000] #10000 # 取前1800条轨迹的轨迹长度
         self.grid_size = config.gird_size  #[1100, 1100]
         self.max_length = max_len
         grid_trajs = [[[i[0]+config.spatial_width , i[1]+config.spatial_width] for i in tg]  # 每个轨迹点的grid index长宽都扩大2
-                      for tg in traj_grids[:10000]] #10000 #dlhu #14000
+                      for tg in traj_grids[:6000]] #10000 #dlhu #14000
 
         traj_grids, useful_grids, max_len = pickle.load(open(coordatapath, 'rb'))
         x, y = [], []
@@ -50,9 +50,9 @@ class NeuTrajTrainer(object):
         meanx, meany, stdx, stdy = np.mean(x), np.mean(y), np.std(x), np.std(y)   # 平均值和全局标准差
         traj_grids = [[[(r[0] - meanx) / stdx, (r[1] - meany) / stdy] for r in t] for t in traj_grids] # 对轨迹点坐标进行归一化
 
-        coor_trajs = traj_grids[:10000] #10000 #dlhu #14000
+        coor_trajs = traj_grids[:6000] #10000 #dlhu #14000
         # train_size = int(len(grid_trajs)*train_radio/self.batch_size)*self.batch_size  # 训练集大小360--------------------------
-        train_size = 3000 #3000 #10000  # ----------------------------
+        train_size = 1800 #3000 #10000  # ----------------------------
 
         grid_train_seqs, grid_test_seqs = grid_trajs[:train_size], grid_trajs[train_size:]  # 划分测试集和训练集
         coor_train_seqs, coor_test_seqs = coor_trajs[:train_size], coor_trajs[train_size:]
@@ -174,7 +174,7 @@ class NeuTrajTrainer(object):
             spatial_net.load_state_dict(pickle.load(open(load_model, 'rb'))) #(torch.load(load_model))
 
             embeddings = tm.test_comput_embeddings(self, spatial_net, test_batch= config.em_batch)
-            acc1 = tm.test_model(self,embeddings, test_range=list(range(10000)), #dlhu #16000
+            acc1 = tm.test_model(self,embeddings, test_range=list(range(6000)), #dlhu #16000
                                  similarity=True, print_batch=print_test, r10in50=True)
             print(acc1)
             return acc1
@@ -201,7 +201,7 @@ class NeuTrajTrainer(object):
 
             embeddings = tm.test_comput_embeddings(self, spatial_net, test_batch= config.em_batch)   # embedding的范围需要在test_methods.py中按需修改
 
-            tm.test_model(self,embeddings, test_range=list(range(12000)), #dlhu #16000
+            tm.test_model(self,embeddings, test_range=list(range(6000)), #dlhu #16000
                                  similarity=True, print_batch=print_test, r10in50=True)
 
         maxacc = 0.0
@@ -246,7 +246,7 @@ class NeuTrajTrainer(object):
             print(embeddings.shape)
             print(embeddings[0].shape)
 
-            acc1 = tm.test_model(self,embeddings, test_range=list(range(3000,10000)),similarity=True, print_batch=print_test) #dlhu #(10000,14000)
+            acc1 = tm.test_model(self,embeddings, test_range=list(range(1800,6000)),similarity=True, print_batch=print_test) #dlhu #(10000,14000)
 
             print(acc1)
 
