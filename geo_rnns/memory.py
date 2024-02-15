@@ -34,7 +34,7 @@ class Attention(nn.Module):
         attn = torch.bmm(output, context.transpose(1, 2))  # bmm(220*1*128，220*128*25)=220*1*25  transpose(1,2)将1、2维进行转置
         self.mask = (attn.data == 0).byte()   # mask必须是一个ByteTensor
         if self.mask is not None:
-            attn.data.masked_fill_(self.mask, -float('inf'))  #masked_fill_->masked_filled
+            attn.data.masked_fill_(self.mask.bool(), -float('inf'))  #masked_fill_->masked_filled
         attn = F.softmax(attn.view(-1, input_size), dim=1).view(batch_size, -1, input_size)
         # (batch, out_len, in_len) * (batch, in_len, dim) -> (batch, out_len, dim)
         oatt = (attn.data != attn.data).byte()
