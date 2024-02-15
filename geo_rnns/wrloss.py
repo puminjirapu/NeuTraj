@@ -7,11 +7,11 @@ import numpy as np
 class WeightMSELoss(Module):
     def __init__(self, batch_size, sampling_num):
         super(WeightMSELoss, self).__init__()
-        self.weight = []
+        # Initialize weight as a 2D NumPy array
+        self.weight = np.zeros((batch_size, sampling_num))
         for i in range(batch_size):
-            self.weight.append(0.)
             for traj_index in range(sampling_num):
-                self.weight.append(np.array([config.sampling_num - traj_index]))
+                self.weight[i, traj_index] = config.sampling_num - traj_index
 
         self.weight = np.array(self.weight)
         sum = np.sum(self.weight)
