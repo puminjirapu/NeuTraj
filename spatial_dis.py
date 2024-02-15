@@ -13,7 +13,7 @@ def com_true_test(path = None):
     print("test_set",len(test_set))
     # test_set, _, _ = pickle.load(open(path, 'rb'))
     test_set = test_set[1800:6000]
-    test_sample = test_set[:1000]
+    test_sample = test_set[:600]
 
     process_size = 200 
     pool = multiprocessing.Pool(processes=20)
@@ -39,7 +39,7 @@ def com_true_test_batch(i,test_sample,test_set):  # 200*30w  50 file
 
 def combine_true_test_batch():
     all_batch = []
-    for i in range(1001): 
+    for i in range(600): 
         if (i!=0) and (i%200==0):
             all_batch.append(np.load('./features/{}/test_ground_truth/{}/spatial_truth/{}_{}_{}.npy'.format(config.data_type,config.distance_type, config.data_type, config.distance_type, str(i)), allow_pickle=True))
             print(i)
