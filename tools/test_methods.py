@@ -29,7 +29,7 @@ def test_comput_embeddings(self, spatial_net, test_batch = 1025):
         embeddings = out.data
         j += test_batch
         embeddings_list.append(embeddings)
-        if (j% 1000) == 0:
+        if (j% 600) == 0:
             print(j)
     print(('embedding time of {} trajectories: {}'.format(self.padded_trajs.shape[0], time.time()-s)))
     embeddings_list = torch.cat(embeddings_list, dim=0)
@@ -43,7 +43,7 @@ def test_model(self, embedding_set, test_range, print_batch=10, similarity = Fal
 
     embedding_dis_matrix = []
     for i, t in enumerate(embedding_set): 
-        if i == 6000:
+        if i == 4200:
             break
         emb = np.repeat([t], repeats=len(embedding_set), axis=0)
         matrix = np.linalg.norm(emb - embedding_set, ord=2, axis=1)
@@ -55,11 +55,11 @@ def test_model(self, embedding_set, test_range, print_batch=10, similarity = Fal
 
     for i in range(len(input_dis_matrix)):
 
-        input_r = np.array(input_dis_matrix[i])[:6000]
+        input_r = np.array(input_dis_matrix[i])[:4200]
         input_r50 = np.argsort(input_r)[1:51] 
         input_r10 = input_r50[:10]
 
-        embed_r = np.array(embedding_dis_matrix[i])[:6000]
+        embed_r = np.array(embedding_dis_matrix[i])[:4200]
         embed_r50 = np.argsort(embed_r)[1:51]
         embed_r10 = embed_r50[:10]
 
